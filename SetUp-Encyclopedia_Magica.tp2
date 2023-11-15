@@ -2,15 +2,14 @@ BACKUP ~backup/Encyclopedia_Magica~
 AUTHOR ~Grammarsalad~
 // README ~Encyclopedia_Magica\Encyclopedia_Magica_README.pdf~
 
-VERSION ~0.90.24~
-
+VERSION ~0.00.01~
 
 ALWAYS
 
         OUTER_SPRINT ~folder~ ~Encyclopedia_Magica~
 
         ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
-	   INCLUDE ~B_Spells/lib/add_ids.tpa~
+	   INCLUDE ~Encyclopedia_Magica/lib/add_ids.tpa~
         END
 
  	ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN
@@ -35,390 +34,67 @@ ALWAYS
 
         //not ready yet
 	ACTION_IF NOT FILE_EXISTS ~override/b_spells_settings.ini~ BEGIN
-  	  COPY ~B_Spells/b_spells_settings.ini~ ~override~
+  	  COPY ~Encyclopedia_Magica/b_spells_settings.ini~ ~override~
 	END
 
   	INCLUDE ~override/b_spells_settings.ini~
 
-        INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/spon_cast_functions.tpa~
 
-        INCLUDE ~B_Spells/lib/replace_text.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/replace_text.tpa~
 
-        INCLUDE ~B_Spells/lib/add_icons.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/add_icons.tpa~
 
-        INCLUDE ~B_Spells/lib/add_headers.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/add_headers.tpa~
 
-        INCLUDE ~B_Spells/lib/add_spell_ex.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/add_spell_ex.tpa~
 
-        INCLUDE ~B_Spells/lib/add_sumtable.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/add_sumtable.tpa~
 
-	INCLUDE ~B_Spells/lib/SEQUENCER_MENU.tpa~
+	INCLUDE ~Encyclopedia_Magica/lib/SEQUENCER_MENU.tpa~
         
-        INCLUDE ~B_Spells/lib/illusion_crea.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/illusion_crea.tpa~
 
-        INCLUDE ~B_Spells/lib/alter_spell_type.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/alter_spell_type.tpa~
 
-        INCLUDE ~B_Spells/lib/second_opp.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/second_opp.tpa~
 
-        INCLUDE ~B_Spells/lib/tooltips.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/tooltips.tpa~
 
-        INCLUDE ~B_Spells/lib/make_cantrip.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/make_cantrip.tpa~
 
-//        INCLUDE ~B_Spells/lib/room_for_spells.tpa~
+//        INCLUDE ~Encyclopedia_Magica/lib/room_for_spells.tpa~
 
-        INCLUDE ~B_Spells/lib/alter_effect.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/alter_effect.tpa~
 
-        INCLUDE ~B_Spells/lib/alter_effect_add.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/alter_effect_add.tpa~
 
-	INCLUDE ~B_Spells/lib/remove_lines.tpa~
+	INCLUDE ~Encyclopedia_Magica/lib/remove_lines.tpa~
 
-	INCLUDE ~B_Spells/lib/summon_table.tpa~
+	INCLUDE ~Encyclopedia_Magica/lib/summon_table.tpa~
 
-	INCLUDE ~B_Spells/lib/splprot_attributes.tpa~
+	INCLUDE ~Encyclopedia_Magica/lib/splprot_attributes.tpa~
 
-	INCLUDE ~B_Spells/lib/spell_to_innate.tpa~
+	INCLUDE ~Encyclopedia_Magica/lib/spell_to_innate.tpa~
 
-	INCLUDE ~B_Spells/lib/spell_clone_effects.tpa~
+	INCLUDE ~Encyclopedia_Magica/lib/spell_clone_effects.tpa~
 
-        INCLUDE ~B_Spells/lib/bg2fp_effect_batches_fnp.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/bg2fp_effect_batches_fnp.tpa~
 
-        INCLUDE ~B_Spells/lib/bg2fp_effect_batches_b_vise.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/bg2fp_effect_batches_b_vise.tpa~
 
-        INCLUDE ~B_Spells/lib/bg2fp_effect_batches_spell_saves.tpa~
+        INCLUDE ~Encyclopedia_Magica/lib/bg2fp_effect_batches_spell_saves.tpa~
 
-        INCLUDE ~B_Spells/lib/extra_alter_effect.tpa~
-
+        INCLUDE ~Encyclopedia_Magica/lib/extra_alter_effect.tpa~
 
 END
-
-//Below from IWDification. Looks like a way to check spell.ids for particular spells...
-//ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~) OR override_arcane) BEGIN
-
-//need to keep my options open
 
 ASK_EVERY_COMPONENT
 
 /* Language Settings */
 AUTO_TRA ~B_Spells/tra/%s~
 LANGUAGE ~English~ ~english~
-         ~B_Spells/tra/english/setup.tra~
-         ~B_Spells/tra/english/IWD_spells.tra~  //for IWDEE spells
-         ~B_Spells/tra/english/new_spells.tra~  //for new spells
-         ~B_Spells/tra/english/cantrips.tra~  //for cantrips
-         ~B_Spells/tra/english/revised.tra~  //for revised
-         ~B_Spells/tra/english/items.tra~  //for items
-         ~B_Spells/tra/english/icons.tra~   //icons
-
-///NOTE TO SELF: COMPLETELY REDO tp2 with finished products from B_Spells/comp/%VAR%.tpa~
-
-
-//CONTINUE FROM HERE
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////             Spells & Magic: 101-???: New and Revised Spells              ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-///////                                                   ///////
-///////           Components 101-103: New Spells          ///////
-///////                                                   ///////
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			101: All new spells (including IWDEE spells if applicable)
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-BEGIN @0  //All new spells (including IWDEE spells if applicable)
-SUBCOMPONENT @100
-DESIGNATED 101
-GROUP @5  //New and Revised Spells
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
-
-
-//SR NWN deflection compatibility
-ACTION_CLEAR_ARRAY aoe_spell
-
-LAM b_spells_settings_global
-
-OUTER_SET b_new_spells = 1
-OUTER_SET b_iwdee_spells = 1
-
-
-//Add IWD spells if not already in game_____________________________________________
-
-//IWDEE Spells
-//IWDEE priest spells not installed
-//include
-//Detects IWDEE priest spells- Not SR: checked in individual setup tpas
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-      COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
-      COPY ~%folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-        INCLUDE ~%folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
-
-ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
- INCLUDE ~%folder%/lib/iwdee_sr_readd.tpa~
-END
-
-//special: reinstall spells if any version of SR installed
-ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
-  INCLUDE ~%folder%/lib/sr_readd.tpa~
-END
-
-//Now, for other IWDEE wiz spells--Not SR which will be checked in game
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
-    INCLUDE ~%folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
-   COPY ~%folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
-   END
-   COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
-END
-
-//Add new spells if not in game
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ABUNDANT_AMMO~)) BEGIN    //
-  INCLUDE ~%folder%/lib/fnp_new_spells.tpa~
-END
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ACCELERATE_HEALING~)) BEGIN  //if not my new spells
-    INCLUDE ~%folder%/data/components/Setup_New_Spells.tpa~      //New Spells
-END
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			102: IWDEE spells only
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-//Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-INCLUDE ~%folder%/lib/immunities.tpa~
-//sr spell deflection compatibility
-INCLUDE ~%folder%/lib/compatibility_SR.tpa~
-
-BEGIN @1  //IWDEE Spells only
-SUBCOMPONENT @100
-DESIGNATED 102
-GROUP @5 
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
-
-
-//SR NWN deflection compatibility
-ACTION_CLEAR_ARRAY aoe_spell
-
-//Detects IWDEE priest spells- Not SR: checked in individual setup tpas
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-	COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
-      COPY ~%folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-      INCLUDE ~%folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
-
-  ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
-   INCLUDE ~faiths_and_powers/lib/iwdee_sr_readd.tpa~
-  END
-
-//special: reinstall spells if any version of SR installed
-ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
-  INCLUDE ~faiths_and_powers/lib/sr_readd.tpa~
-END
-
-//Now, for other IWDEE wiz spells--Not SR which will be checked in game
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
-    INCLUDE ~%folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
-   COPY ~%folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
-   END
-   COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
-END
-
-
-//Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-INCLUDE ~%folder%/lib/immunities.tpa~
-//sr spell deflection compatibility
-INCLUDE ~%folder%/lib/compatibility_SR.tpa~
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			103: New spells only
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-BEGIN @3  //New Spells only
-SUBCOMPONENT @100
-DESIGNATED 103
-GROUP @5 
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
-
-//SR NWN deflection compatibility
-ACTION_CLEAR_ARRAY aoe_spell
-
-//Add new spells if not in game
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ABUNDANT_AMMO~)) BEGIN    //
-  INCLUDE ~%folder%/lib/fnp_new_spells.tpa~
-END
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ACCELERATE_HEALING~)) BEGIN  //if not my new spells
-    INCLUDE ~%folder%/data/components/Setup_New_Spells.tpa~      //New Spells
-END
-
-//Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-INCLUDE ~%folder%/lib/immunities.tpa~
-//sr spell deflection compatibility
-INCLUDE ~%folder%/lib/compatibility_SR.tpa~
-
-
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-///////                                                   ///////
-///////        Components 110-???: Revised Spells         ///////
-///////                                                   ///////
-/////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			110: All Locally Revised Spells
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-BEGIN @53 // ~Install All Revised Spells (per ini)~
-//SUBCOMPONENT @100
-DESIGNATED 110
-GROUP @5 
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			111: Global Spell Changes: Healing Spells
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			111: Global Spell Changes: Charm Spells
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////       Spells & Magic: 120 - ???: Cantrips and Modified Spell Lists       ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////         Components 120-???: Cantrips: Infinite Innate        ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//		120: Infinite Innate Cantrips for all divine and arcane classes
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-/*
-//not ready
-
-BEGIN @18  //Install Infinite Innate Cantrips for all divine and arcane classes
-SUBCOMPONENT @19
-DESIGNATED 120
-GROUP @23
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
-
-//CODE TO SET CANTRIP TYPE (i.e. in make_cantrip.tpa) 
-
-//END CODE TO SET CANTRIP TYPE
-
-//priest orisons
-//CHECK???
-INCLUDE ~%folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
-//END
-//arcane orisons
-//CHECK???
-INCLUDE ~%folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
-//END
-
-*/
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//		121: Infinite Innate Cantrips for all divine classes
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-
-/*
-//not ready
-
-BEGIN @20  //Install Infinite Innate Cantrips for all divine classes
-SUBCOMPONENT @19
-DESIGNATED 121
-GROUP @23
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
-
-//CODE TO SET CANTRIP TYPE (i.e. in make_cantrip.tpa) 
-
-//END CODE TO SET CANTRIP TYPE
-
-//priest orisons
-//CHECK???
-INCLUDE ~%folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
-
-*/
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//		122: Infinite Innate Cantrips for all arcane classes
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-
-/*
-//not ready
-
-BEGIN @21  //Install Infinite Innate Cantrips for all arcane classes
-SUBCOMPONENT @19
-DESIGNATED 122
-GROUP @23
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
-
-//CODE TO SET CANTRIP TYPE (i.e. in make_cantrip.tpa) 
-
-//END CODE TO SET CANTRIP TYPE
-
-//arcane orisons
-//CHECK???
-INCLUDE ~%folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
-//END
-
-*/
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////               Components 130: Unique Spell Lists             ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//do in B_KITS and then migrate here
-
+         ~Encyclopedia_Magica/tra/english/setup.tra~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -440,7 +116,7 @@ INCLUDE ~%folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			501: Install All new items (including IWDEE items if applicable)
+//	501: Install All new items (including IWDEE items if applicable)
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -464,7 +140,7 @@ INCLUDE ~%folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			4001: Install the Standard (Simulated PnP) version of Item creation for all casting classes
+//	4001: Install the Standard (Simulated PnP) version of Item creation for all casting classes
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -581,214 +257,21 @@ INCLUDE ~%folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scrolls
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////                                                                          ////////////////////////
-////////////////////////       Spells & Magic: ??? - ???: Expanded Abilities and Attributes       ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////          Components ???-???: Turn Bonus by Charisma          ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//do in B_KITS and then migrate here
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//		???: All Priests and Paladins: Turn bonus by charisma
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//		???: Clerics: Turn Modification by charisma
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//		???: Paladins: Turn Modification by charisma
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////            Components ???-???: High Int Illusion             ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//Do in Skills & Proficiencies and then migrate here
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			???: Illusion immunity for high int
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			???: Save Bonuses for high int
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-
-
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////  Components ???-???: Magic defense adjustment for high wis   ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//Do in Skills & Proficiencies and then migrate here
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////     Components ???-???: Spell power for high Attributes      ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//Do in Skills & Proficiencies and then migrate here
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////               Spells & Magic: ??? - ???: Magic Item Creation             ////////////////////////
+////////////////////////          Spells & Magic: ??? - ???: Magic Item Skills & Creation         ////////////////////////
 ////////////////////////                                                                          ////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Do in Skills & Proficiencies and then migrate here
 
 
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////          Components ???-???: Turn Bonus by Charisma          ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////                                                         ///////
+///////                Components ???-???: Skills		///////
+///////                                                         ///////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////               Spells & Magic: ??? - ???: High Level Abilities            ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//do in B_KITS and then migrate here
-
-BEGIN @24  //Install Innate HLAs through the Spell Menu Button
-DESIGNATED 5001
-GROUP @25
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
-/*
-//not ready (not even close)
-INCLUDE ~%folder%/data/components/Setup_innate_spmenu.tpa~      //Priest Scrolls
-
-*/
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////                    Components ???-???: ???                   ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////                   Spells & Magic: ??? - ???: Limitations                 ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//do in B_KITS and and Skills & Proficiencies, then migrate here
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////            Components ???-???: Performance Fatigue           ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//do in B_KITS and then migrate here
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////                     Spells & Magic: ??? - ???: Extras                    ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////            Components ???-???: Spontaneous Casting           ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//
-//			???: Spontaneous Casting (By Pecca)
-//__________________________________________________________________________________
-//__________________________________________________________________________________
-//Do in B_Kits and then migrate here
-/*
-//issues with the function, so not ready yet
-
-
-BEGIN @180  //Spontaneous Casting for clerics and druids (by Pecca)
-SUBCOMPONENT @180 //Spontaneous Casting for clerics and druids (by Pecca)
-DESIGNATED 601
-GROUP @162    //Class 'Extras'
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
-
-//extra spells if nec
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-  INCLUDE ~%folder%/data/components/Setup_missing_spells.tpa~
-END
-
-//New spells if nec
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
-  INCLUDE ~%folder%/lib/spon_cast_spells.tpa~
-END
-
-INCLUDE ~%folder%/data/components/Setup_Spontaneous_Casting.tpa~
-
-//ADD ITEM CRAFTING COMPONENTS
-//ADD DOMAIN SPELLS (INTERACTS WITH SPON CASTING and CANTRIPS)
-//ADD
-
-*/
-
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////                Components ???-???: Use Scroll                ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//Do in B_Kits and then migrate here
 
 
 //__________________________________________________________________________________
@@ -799,12 +282,5 @@ INCLUDE ~%folder%/data/components/Setup_Spontaneous_Casting.tpa~
 //__________________________________________________________________________________
 //Do in B_Kits and then migrate here
 
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
-///////                Components ???-???: Variant Turning           ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-//Do in Skills & Proficiencies and then migrate here
+
 
