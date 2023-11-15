@@ -1,1 +1,365 @@
+//Copy over from various new item setup files for ALL new items (but not crafting)--ONLY FINISHED PRODUCT WILL GO HERE
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                 New Wands               //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////                   	                       ///////////////////////////////////// 
+////////////////////////////////////                  Missing	                 ///////////////////////////////////// 
+////////////////////////////////////                     	                     ///////////////////////////////////// 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////
+//////////////////           Miscellaneous            //////////////////
+////////////////////////////////////////////////////////////////////////
+
+//ground bam
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~GWAND01.bam~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/GWAND01.bam~ ~override~
+END
+
+//missing gems
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~MISC41.itm~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/MISC41.itm~ ~override~
+        SAY NAME1 @68087
+        SAY NAME2 @68088
+	SAY DESC @68089
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~TTTREAS.itm~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/TTTREAS.itm~ ~override~
+        SAY NAME1 @68087
+        SAY NAME2 @68088
+	SAY DESC @68089
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////      Wand of Magic Missiles        //////////////////
+////////////////////////////////////////////////////////////////////////
+//don't know why I'm adding these, but I did before, and I prob had a good reason...
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND12.ITM~ BEGIN
+  COPY_EXISTING ~WAND03.ITM~ ~override/WAND12.ITM~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~LIGHT.ITM~ BEGIN
+  COPY_EXISTING ~WAND03.ITM~ ~override/LIGHT.ITM~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS01.ITM~ BEGIN
+  COPY_EXISTING ~WAND03.ITM~ ~override/PULS01.ITM~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS02.ITM~ BEGIN
+  COPY_EXISTING ~WAND03.ITM~ ~override/PULS02.ITM~
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////         Wand of Lightning          //////////////////
+////////////////////////////////////////////////////////////////////////
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWAND07.BAM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWAND07.BAM~ ~override~
+END
+
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND07.ITM~ BEGIN
+
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	      SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~MISC7N.ITM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/MISC7N.ITM~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	      SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDREA.ITM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override/WANDREA.ITM~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010056
+	      SAY DESC @900010057
+        SAY UNIDENTIFIED_DESC @900010058
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////         Wand of Fireballs          //////////////////
+////////////////////////////////////////////////////////////////////////
+
+//| of Fireballs (N) | III | As Fireball Spell | 6d6 dam
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN05.ITM~ BEGIN
+  COPY ~%folder%/data/wands/B_WAN05.itm~ ~override~
+        SAY NAME2 @900010009
+        SAY DESC @900010010
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////       Wand of Freezing Death       //////////////////
+////////////////////////////////////////////////////////////////////////
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWANDFRE.BAM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWANDFRE.BAM~ ~override~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDFRE.ITM~ BEGIN
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@3270000) // ice lance
+  $tip(2) = RESOLVE_STR_REF (@2040002) // sss
+  $tip(3) = RESOLVE_STR_REF (@900010063) // Ice Storm
+STR_VAR
+  item = WANDFRE // file name
+END
+  COPY ~%folder%/data/arcane_crafting/wand/WANDFRE.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010059
+	SAY DESC @900010060
+        SAY UNIDENTIFIED_DESC @900010058
+           LPF ALTER_EFFECT INT_VAR  STR_VAR match_resource = ~SPWI327~ resource = EVAL ~WNDFRE1~  END      //
+           LPF ALTER_EFFECT INT_VAR  STR_VAR match_resource = ~SPWI204~ resource = EVAL ~WNDFRE2~  END      //
+           LPF ALTER_EFFECT INT_VAR  STR_VAR match_resource = ~SPWI404~ resource = EVAL ~WNDFRE3~  END      //
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ICELANCE~)) BEGIN  //check for spells and add if missing
+  //Projectile
+     ADD_PROJECTILE ~%folder%/data/iwd_spells/wizard_3/IDPRO251.pro~   //projectile
+  //bam
+     COPY ~%folder%/data/iwd_spells/wizard_3/ICELANT.BAM~ ~override~   //animation
+  //sounds
+     COPY ~%folder%/data/iwd_spells/wizard_3/#TRA_19.wav~ ~override~   //animation
+  //Spell itself
+     COPY ~%folder%/data/iwd_spells/wizard_3/b_w327.spl~ ~override/WNDFRE1.SPL~  //
+        SAY NAME1 @3270000
+        SAY NAME2 @3270000
+        SAY UNIDENTIFIED_DESC @3270003
+	SAY DESC @3270003
+         LPF cd_apply_batch STR_VAR array_name = cd_full_stun_arrays END
+         LPF ALTER_EFFECT
+           INT_VAR match_opcode = 324            //
+           STR_VAR resource = EVAL ~WNDFRE1~
+         END      //
+        WRITE_SHORT 0x001c 2 //spell type: Cleric
+      COPY_EXISTING ~WNDFRE1.spl~ ~override~
+          SET strref = RESOLVE_STR_REF(@3270002)
+          LPF ALTER_EFFECT
+             INT_VAR match_opcode = 139 match_parameter1 = 14024 parameter1 = %strref%   END      //
+      //add icons and projectile
+      COPY_EXISTING ~WNDFRE1.spl~ ~override~
+          LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO251% STR_VAR icon = EVAL  ~WNDFRE1B~ END
+      COPY ~%folder%/data/iwd_spells/wizard_3/SPWI327a.bam~ ~override/WNDFRE1a.bam~
+      COPY ~%folder%/data/iwd_spells/wizard_3/SPWI327b.bam~ ~override/WNDFRE1b.bam~
+      COPY ~%folder%/data/iwd_spells/wizard_3/SPWI327c.bam~ ~override/WNDFRE1c.bam~
+      //add bams to spl
+      COPY_EXISTING ~WNDFRE1.spl~ ~override~
+          WRITE_EVALUATED_ASCII 0x003a ~WNDFRE1C~
+ END   //end icelance
+ //icelance in game
+  ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ICELANCE~)) BEGIN  //check for spells and add if missing
+//Ice Storm
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_ICELANCE~
+    RET spell_res
+  END
+  COPY_EXISTING ~%spell_res%.spl~ ~override/WNDFRE1.SPL~
+        WRITE_SHORT 0x001c 2 //spell type: Cleric
+  END
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~)) BEGIN  //check for spells and add if missing
+   //Projectile
+      ADD_PROJECTILE ~%folder%/data/iwd_spells/wizard_2/IDPRO217.pro~   //projectile
+   //VVC
+      COPY ~%folder%/data/iwd_spells/wizard_2/#SSSWARM.vvc~ ~override~   //animation
+   //bam
+      COPY ~%folder%/data/iwd_spells/wizard_2/SSSWART.BAM~ ~override~   //animation
+      COPY ~%folder%/data/iwd_spells/wizard_2/SSSWARR.BAM~ ~override~   //animation
+      COPY ~%folder%/data/iwd_spells/wizard_2/SSSWARX.BAM~ ~override~   //animation
+   //sounds
+      COPY ~%folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
+      COPY ~%folder%/data/iwd_spells/wizard_2/RNG_M02.WAV~ ~override~   //
+   //Spell itself
+      COPY ~%folder%/data/iwd_spells/wizard_2/b_w204.spl~ ~override/WNDFRE2.SPL~
+        SAY NAME1 @2040002
+        SAY NAME2 @2040002
+        SAY UNIDENTIFIED_DESC @2040003
+	SAY DESC @2040003
+          LPF ALTER_EFFECT INT_VAR match_opcode = 318  STR_VAR resource = EVAL ~WNDFRE2~ END      //
+          LPF ALTER_EFFECT  INT_VAR match_opcode = 324  STR_VAR resource = EVAL ~WNDFRE2~  END      //
+          WRITE_SHORT 0x001c 2 //spell type: Cleric
+   //add icons and projectile
+        LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~WNDFRE2B~ END
+          COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/WNDFRE2a.bam~
+          COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/WNDFRE2b.bam~
+          COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/WNDFRE2c.bam~
+   //add bams to spl
+        COPY_EXISTING ~WNDFRE2.spl~ ~override~
+           WRITE_EVALUATED_ASCII 0x003a ~WNDFRE2C~
+ END  //end SSS
+ //sss in game
+  ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~)) BEGIN  //check for spells and add if missing
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_SNILLOCS_SNOWBALL_SWARM~
+    RET spell_res
+  END
+COPY_EXISTING ~%spell_res%.spl~ ~override/WNDFRE2.SPL~
+        WRITE_SHORT 0x001c 2 //spell type: Cleric
+  END
+//Ice Storm
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_ICE_STORM~
+    RET spell_res
+  END
+COPY_EXISTING ~%spell_res%.spl~ ~override/WNDFRE3.SPL~
+        WRITE_SHORT 0x001c 2 //spell type: Cleric
+END   //end wand of fr death
+
+////////////////////////////////////////////////////////////////////////
+//////////////////           Wand of Armory           //////////////////
+////////////////////////////////////////////////////////////////////////
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWANDARM.BAM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWANDARM.BAM~ ~override~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDARM.ITM~ BEGIN
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010064) // shield
+  $tip(2) = RESOLVE_STR_REF (@900010065) // ghost armor
+STR_VAR
+  item = WANDARM // file name
+END
+  COPY ~%folder%/data/arcane_crafting/wand/WANDARM.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010061
+	SAY DESC @900010062
+        SAY UNIDENTIFIED_DESC @900010058
+           LPF ALTER_EFFECT INT_VAR  STR_VAR match_resource = ~SPWI114~ resource = EVAL ~WNDARM1~  END      //
+           LPF ALTER_EFFECT INT_VAR  STR_VAR match_resource = ~SPWI317~ resource = EVAL ~WNDARM2~  END      //
+//shield
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_SHIELD~
+    RET spell_res
+  END
+COPY_EXISTING ~%spell_res%.spl~ ~override/WNDARM1.SPL~
+        WRITE_SHORT 0x001c 2 //spell type: Cleric
+//ghost armor
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_GHOST_ARMOR~
+    RET spell_res
+  END
+COPY_EXISTING ~%spell_res%.spl~ ~override/WNDARM2.SPL~
+        WRITE_SHORT 0x001c 2 //spell type: Cleric
+END  //end wand of armory
+
+////////////////////////////////////////////////////////////////////////
+//////////////////         Wand of Polymorph          //////////////////
+////////////////////////////////////////////////////////////////////////
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWAND09.BAM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWAND09.BAM~ ~override~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND09.ITM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/WAND09.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010066
+	SAY DESC @900010067
+        SAY UNIDENTIFIED_DESC @900010058
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////         Wand of Cloudkill          //////////////////
+////////////////////////////////////////////////////////////////////////
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWAND13.BAM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWAND13.BAM~ ~override~
+END
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND13.ITM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/WAND13.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010068
+	SAY DESC @900010069
+        SAY UNIDENTIFIED_DESC @900010058
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////      Wand of Spell Striking        //////////////////
+////////////////////////////////////////////////////////////////////////
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND18.itm~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWAND18.bam~ ~override~
+  COPY ~%folder%/data/arcane_crafting/wand/WAND18.ITM~ ~override~
+        SAY NAME1 @68077
+        SAY NAME2 @68083
+        SAY UNIDENTIFIED_DESC @68080
+	SAY DESC @68084
+  LPF ALTER_EFFECT INT_VAR STR_VAR match_resource = SPWI513 resource = B_WA101 END      //   breach
+  LPF ALTER_EFFECT INT_VAR STR_VAR match_resource = SPWI608 resource = B_WA102 END      // sp piercing
+
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@68085) // Breach
+  $tip(2) = RESOLVE_STR_REF (@68086) // Pierce Magic
+STR_VAR
+  item = WAND18 // file name
+END
+//spells
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_BREACH~
+  RET spell_res
+END
+  COPY_EXISTING ~%spell_res%.spl~ ~override/B_WA101.spl~
+    LPF ALTER_SPELL_TYPE INT_VAR   spell_type = 4 END
+  COPY ~%folder%/data/arcane_crafting/wand/B_WA102.SPL~ ~override~
+        SAY NAME1 @68086
+        SAY NAME2 @68086
+        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68087) STR_VAR END  //Spell Protections Removed
+  COPY ~%folder%/data/arcane_crafting/wand/SPATTCK1.BAM~ ~override~
+END  //end add wand
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Cursing           //////////////////
+////////////////////////////////////////////////////////////////////////
+
+//
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND19.itm~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWAND19.bam~ ~override~
+  COPY ~%folder%/data/arcane_crafting/wand/WAND19.ITM~ ~override~
+        SAY NAME1 @68077
+        SAY NAME2 @68078
+        SAY UNIDENTIFIED_DESC @68080
+	SAY DESC @68079
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68081) match_parameter1 = 37800 STR_VAR END  //blind notification
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68082) match_parameter1 = 35952 STR_VAR END  //deaf notification
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68083) match_parameter1 = 37805 STR_VAR END  //Silence notification
+END  //end add wand
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Corosion          //////////////////
+////////////////////////////////////////////////////////////////////////
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWANDCOR.BAM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/IWANDCOR.BAM~ ~override~
+END
+
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDCOR.ITM~ BEGIN
+  COPY ~%folder%/data/arcane_crafting/wand/WANDCOR.ITM~ ~override~
+        SAY NAME1 @900010055
+        SAY NAME2 @900010070
+	SAY DESC @900010071
+        SAY UNIDENTIFIED_DESC @900010058
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////        Wand of the Heavens         //////////////////
+////////////////////////////////////////////////////////////////////////
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~TTWAND.ITM~ BEGIN
+  COPY_EXISTING ~WAND11.ITM~ ~override/TTWAND.ITM~
+END
