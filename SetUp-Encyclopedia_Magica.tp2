@@ -92,7 +92,7 @@ END
 ASK_EVERY_COMPONENT
 
 /* Language Settings */
-AUTO_TRA ~B_Spells/tra/%s~
+AUTO_TRA ~Encyclopedia_Magica/tra/%s~
 LANGUAGE ~English~ ~english~
          ~Encyclopedia_Magica/tra/english/setup.tra~
 
