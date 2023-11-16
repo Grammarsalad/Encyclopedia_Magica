@@ -25,23 +25,24 @@ END
 
 //missing gems
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~MISC41.itm~ BEGIN
-  COPY ~%folder%/data/arcane_crafting/wand/MISC41.itm~ ~override~
+  COPY ~%folder%/itm/wand/MISC41.itm~ ~override~
         SAY NAME1 @68087
         SAY NAME2 @68088
-	SAY DESC @68089
+		SAY DESC @68089
 END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~TTTREAS.itm~ BEGIN
-  COPY ~%folder%/data/arcane_crafting/wand/TTTREAS.itm~ ~override~
+  COPY ~%folder%/itm/wand/TTTREAS.itm~ ~override~
         SAY NAME1 @68087
         SAY NAME2 @68088
-	SAY DESC @68089
+		SAY DESC @68089
 END
 
 ////////////////////////////////////////////////////////////////////////
-//////////////////      Wand of Magic Missiles        //////////////////
+//////////////////      Wand of Magic Missiles      //////
 ////////////////////////////////////////////////////////////////////////
 //don't know why I'm adding these, but I did before, and I prob had a good reason...
+
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND12.ITM~ BEGIN
   COPY_EXISTING ~WAND03.ITM~ ~override/WAND12.ITM~
 END
@@ -58,9 +59,12 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~PULS02.ITM~ BEGIN
   COPY_EXISTING ~WAND03.ITM~ ~override/PULS02.ITM~
 END
 
+// Continue
+
 ////////////////////////////////////////////////////////////////////////
-//////////////////         Wand of Lightning          //////////////////
+//////////////////         Wand of Lightning         /////////
 ////////////////////////////////////////////////////////////////////////
+
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~IWAND07.BAM~ BEGIN
   COPY ~%folder%/data/arcane_crafting/wand/IWAND07.BAM~ ~override~
 END
@@ -71,7 +75,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND07.ITM~ BEGIN
   COPY ~%folder%/data/arcane_crafting/wand/WAND07.ITM~ ~override~
         SAY NAME1 @900010055
         SAY NAME2 @900010056
-	      SAY DESC @900010057
+	    SAY DESC @900010057
         SAY UNIDENTIFIED_DESC @900010058
 
 END

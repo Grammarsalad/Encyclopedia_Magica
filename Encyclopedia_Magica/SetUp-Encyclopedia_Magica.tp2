@@ -6,38 +6,38 @@ VERSION ~0.00.01~
 
 ALWAYS
 
-        OUTER_SPRINT ~folder~ ~Encyclopedia_Magica~
+    OUTER_SPRINT ~folder~ ~Encyclopedia_Magica~
 
-        ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
+    ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
 	   INCLUDE ~Encyclopedia_Magica/lib/add_ids.tpa~
-        END
+    END
 
  	ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~bg2ee~
-        END
+    END
 
  	ACTION_IF GAME_IS ~bgee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~bgee~
-        END
+    END
 
  	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~iwdee~
-        END
+    END
 
  	ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
           OUTER_SPRINT ~style~ ~bgee~
-        END
+    END
 
  	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
           OUTER_SPRINT ~style~ ~iwdee~
-        END
+    END
 
         //not ready yet
 	ACTION_IF NOT FILE_EXISTS ~override/b_spells_settings.ini~ BEGIN
   	  COPY ~Encyclopedia_Magica/b_spells_settings.ini~ ~override~
 	END
 
-  	INCLUDE ~override/b_spells_settings.ini~
+		INCLUDE ~override/b_spells_settings.ini~
 
         INCLUDE ~Encyclopedia_Magica/lib/spon_cast_functions.tpa~
 
@@ -51,7 +51,7 @@ ALWAYS
 
         INCLUDE ~Encyclopedia_Magica/lib/add_sumtable.tpa~
 
-	INCLUDE ~Encyclopedia_Magica/lib/SEQUENCER_MENU.tpa~
+		INCLUDE ~Encyclopedia_Magica/lib/SEQUENCER_MENU.tpa~
         
         INCLUDE ~Encyclopedia_Magica/lib/illusion_crea.tpa~
 
@@ -63,21 +63,21 @@ ALWAYS
 
         INCLUDE ~Encyclopedia_Magica/lib/make_cantrip.tpa~
 
-//        INCLUDE ~Encyclopedia_Magica/lib/room_for_spells.tpa~
+	//      INCLUDE ~Encyclopedia_Magica/lib/room_for_spells.tpa~
 
         INCLUDE ~Encyclopedia_Magica/lib/alter_effect.tpa~
 
         INCLUDE ~Encyclopedia_Magica/lib/alter_effect_add.tpa~
 
-	INCLUDE ~Encyclopedia_Magica/lib/remove_lines.tpa~
+		INCLUDE ~Encyclopedia_Magica/lib/remove_lines.tpa~
 
-	INCLUDE ~Encyclopedia_Magica/lib/summon_table.tpa~
+		INCLUDE ~Encyclopedia_Magica/lib/summon_table.tpa~
 
-	INCLUDE ~Encyclopedia_Magica/lib/splprot_attributes.tpa~
+		INCLUDE ~Encyclopedia_Magica/lib/splprot_attributes.tpa~
 
-	INCLUDE ~Encyclopedia_Magica/lib/spell_to_innate.tpa~
+		INCLUDE ~Encyclopedia_Magica/lib/spell_to_innate.tpa~
 
-	INCLUDE ~Encyclopedia_Magica/lib/spell_clone_effects.tpa~
+		INCLUDE ~Encyclopedia_Magica/lib/spell_clone_effects.tpa~
 
         INCLUDE ~Encyclopedia_Magica/lib/bg2fp_effect_batches_fnp.tpa~
 
@@ -96,22 +96,22 @@ AUTO_TRA ~Encyclopedia_Magica/tra/%s~
 LANGUAGE ~English~ ~english~
          ~Encyclopedia_Magica/tra/english/setup.tra~
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////                                                                          ////////////////////////
-////////////////////////              Spells & Magic: ???-???: New and Revised Items              ////////////////////////
-////////////////////////                                                                          ////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////                                                                          			////////////////////////
+////////////////////////              Spells & Magic: ???-???: New and Revised Items           ////////////////////////
+////////////////////////                                                                          			////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
-///////                                                              ///////
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////                                                              	                ///////
 ///////                Components 501-???: New Items                 ///////
-///////                                                              ///////
-////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////
+///////                                                              	                ///////
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
