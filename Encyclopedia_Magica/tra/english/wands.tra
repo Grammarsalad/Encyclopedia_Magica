@@ -2,7 +2,9 @@
 
 @900010001 = ~Wand of Teeth~
 
-@900010002 = ~When activated, the wand will eject a tooth-like missile at the target, hitting them for 2d6+2 points of damage (save vs. wands for 1/2).
+@900010002 = ~When activated, this wand calls forth a number of "tooth" (one per charge), firing at targets up to 70 feet distant. 
+
+A strike by a tootb does 2d6+2 points of damage (save vs. spell reduces the damage by half).
 
 STATISTICS:
 
