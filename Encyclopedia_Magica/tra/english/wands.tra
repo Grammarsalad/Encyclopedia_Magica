@@ -11,7 +11,7 @@ STATISTICS:
 Charge abilities:
 - Tooth
   Creates 1 'tooth', which is effectively an arrow that does 2d6+2 points of missile damage (save for 1/2)
-  Range: 100 ft.
+  Range: 70 ft.
   Area of Effect: 1 creature
 
 Requires:
